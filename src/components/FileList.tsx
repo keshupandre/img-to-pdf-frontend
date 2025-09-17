@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback, DragEvent, useEffect } from 'react';
-import Image from 'next/image';
 
 interface SelectedFile extends File {
   id: string;

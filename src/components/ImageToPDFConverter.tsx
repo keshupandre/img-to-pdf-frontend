@@ -33,7 +33,7 @@ export function ImageToPDFConverter() {
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const apiUrl = 'http://localhost:8080'; // Backend URL matching the actual server port
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'; // Backend URL from environment variable
 
   const isValidImageFile = useCallback((file: File) => {
     const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -233,11 +233,11 @@ export function ImageToPDFConverter() {
         console.log('Backend health check successful:', data);
       } else {
         console.error('Backend health check failed:', response.status);
-        setError('Cannot connect to backend server. Make sure it\'s running on port 8080.');
+        setError('Cannot connect to the image conversion service. Please try again later or contact support if the issue persists.');
       }
     } catch (error) {
       console.error('Backend health check error:', error);
-      setError('Cannot connect to backend server. Make sure it\'s running on port 8080.');
+      setError('Cannot connect to the image conversion service. Please try again later or contact support if the issue persists.');
     }
   }, [apiUrl]);
 
